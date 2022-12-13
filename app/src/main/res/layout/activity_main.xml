@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbMain"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="4dp" />
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/dlMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llNavigationButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/rgNavigation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbTodoList"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/background_radio_button"
+                        android:button="@drawable/ic_radio_button_pager_todolist"
+                        android:checked="true"
+                        android:layoutDirection="rtl"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="10dp"
+                        android:text="ToDo List"
+                        android:textColor="@drawable/text_color_selector" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbNotes"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/background_radio_button"
+                        android:button="@drawable/ic_radio_button_pager_notes"
+                        android:layoutDirection="ltr"
+                        android:paddingStart="20dp"
+
+                        android:paddingEnd="3dp"
+                        android:text="Notes"
+                        android:textColor="@drawable/text_color_selector" />
+
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+            <com.example.plannerapp.CustomViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/llNavigationButtons" />
+        </RelativeLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            >
+
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+</LinearLayout>

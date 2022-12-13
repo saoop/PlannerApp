@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:behavior_hideable="true">
+
+
+    <LinearLayout
+        android:id="@+id/llBottomSheetNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="1000dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <View
+            android:id="@+id/vDraggingLine"
+            android:layout_width="50dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="#DDDDDD"
+            android:visibility="visible" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/ablNotesDialog"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#DDDDDD"
+            android:visibility="invisible"
+            tools:visibility="visible">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivCloseDialog"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_baseline_clear_24" />
+
+                <ImageView
+                    android:id="@+id/ivSetNotifications"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_baseline_notification_add_24" />
+                <ImageView
+                    android:id="@+id/ivDelete"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="54dp"
+                    android:src="@drawable/ic_baseline_delete_24" />
+                <ImageView
+                    android:id="@+id/ivPalette"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical|end"
+
+                    android:layout_marginEnd="98dp"
+                    android:src="@drawable/ic_baseline_palette_24" />
+
+
+            </FrameLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <LinearLayout
+            android:id="@+id/bottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/etTitle"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:hint="Title"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/etDescription"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:hint="Description"
+                    android:textSize="25sp" />
+
+
+                <View
+                    android:id="@+id/extraSpace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
