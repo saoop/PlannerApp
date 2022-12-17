@@ -36,7 +36,16 @@ class ToDoListFragment : Fragment() {
         rvTodoList.layoutManager = LinearLayoutManager(context)
         adapter = TodoListAdapter(todoListItems)
 
+        adapter.setOnExpandClickListener(object : TodoListAdapter.OnClickListener{
+            override fun onClick(
+                position: Int,
+                model: ItemTodoList,
 
+            ) {
+                super.onClick(position, model)
+                adapter.expandItem(position)
+            }
+        })
 
         rvTodoList.adapter = adapter
     }

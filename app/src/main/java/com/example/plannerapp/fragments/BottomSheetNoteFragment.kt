@@ -2,8 +2,6 @@ package com.example.plannerapp.fragments
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -18,10 +16,11 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.flow.combine
 
 class NoteBottomSheetFragment : BottomSheetDialogFragment() {
 
-    //lateinit var binding: FragmentBottomSheetNotesBinding
+    lateinit var binding: FragmentBottomSheetNotesBinding
     lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
 
     private var onChangeColor: OnChangeColor? = null
@@ -32,7 +31,8 @@ class NoteBottomSheetFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bottom_sheet_notes, container, false)
+        binding = FragmentBottomSheetNotesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     /**
@@ -52,16 +52,48 @@ class NoteBottomSheetFragment : BottomSheetDialogFragment() {
      *
      */
 
-    interface OnChangeColor{
-        public fun onColorChanged(color: ColorEnum){
+    interface OnChangeColor {
+        public fun onColorChanged(color: ColorEnum) {
 
         }
     }
 
-    fun setOnChangeColor(onChangeColor: OnChangeColor){
+    /**
+     * I need this interface to change the color of an item in the adapter. And to update the
+     * database outside of this class.
+     */
+
+    fun setOnChangeColor(onChangeColor: OnChangeColor) {
         this.onChangeColor = onChangeColor
     }
 
+    /**
+     * Changes the color of the Background
+     */
+
+    private fun changeBackground(colorEnumString: String?) {
+        val backGround = when (colorEnumString) {
+            ColorEnum.GREY.toString() -> R.drawable.bottom_sheet_note_background_grey
+            ColorEnum.RED.toString() -> R.drawable.bottom_sheet_note_background_red
+            ColorEnum.BLUE.toString() -> R.drawable.bottom_sheet_note_background_blue
+            ColorEnum.BEIGE.toString() -> R.drawable.bottom_sheet_note_background_beige
+            ColorEnum.GREEN.toString() -> R.drawable.bottom_sheet_note_background_green
+            else -> R.drawable.bottom_sheet_note_background_grey
+        }
+        binding.llBottomSheetNote.setBackgroundResource(backGround)
+    }
+
+    private fun changeAppBarBackGround(colorEnumString: String?) {
+        val backGround = when (colorEnumString) {
+            ColorEnum.GREY.toString() -> R.color.light_grey
+            ColorEnum.RED.toString() -> R.color.red
+            ColorEnum.BLUE.toString() -> R.color.blue
+            ColorEnum.BEIGE.toString() -> R.color.beige
+            ColorEnum.GREEN.toString() -> R.color.green
+            else -> R.color.light_grey
+        }
+        binding.ablNotesDialog.setBackgroundResource(backGround)
+    }
 
     @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,12 +113,8 @@ class NoteBottomSheetFragment : BottomSheetDialogFragment() {
             dismiss()
         }
 
-        //TODO create background for every color, need a lighter color anyway + a new color for appbar
-        //TODO check with when which color we get from arguments
-
-        val llBottomSheet = dialog?.findViewById<LinearLayout>(R.id.llBottomSheetNote)
-        llBottomSheet?.setBackgroundResource(R.drawable.bottom_sheet_note_background_red)
-        //llBottomSheet?.setBackgroundColor(Color.parseColor(arguments?.getString("color")))
+        changeBackground(arguments?.getString("color"))
+        changeAppBarBackGround(arguments?.getString("color"))
 
         val colorBtn = dialog?.findViewById<ImageView>(R.id.ivPalette)
 
@@ -100,25 +128,38 @@ class NoteBottomSheetFragment : BottomSheetDialogFragment() {
             val menuHelper = MenuPopupHelper(requireContext(), menuBuilder, _view)
             menuHelper.setForceShowIcon(true)
 
-            menuBuilder.setCallback(object : MenuBuilder.Callback{
+            menuBuilder.setCallback(object : MenuBuilder.Callback {
                 override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
-                    when(item.itemId){
-                        R.id.miColorGreen ->{
+                    when (item.itemId) {
+                        R.id.miColorGreen -> {
                             onChangeColor?.onColorChanged(ColorEnum.GREEN)
+                            changeBackground(ColorEnum.GREEN.toString())
+                            changeAppBarBackGround(ColorEnum.GREEN.toString())
                             return true
                         }
-                        R.id.miColorBeige->{
+                        R.id.miColorBeige -> {
                             onChangeColor?.onColorChanged(ColorEnum.BEIGE)
+                            changeBackground(ColorEnum.BEIGE.toString())
+                            changeAppBarBackGround(ColorEnum.BEIGE.toString())
                             return true
                         }
                         R.id.miColorBlue -> {
                             onChangeColor?.onColorChanged(ColorEnum.BLUE)
+                            changeAppBarBackGround(ColorEnum.BLUE.toString())
+                            changeBackground(ColorEnum.BLUE.toString())
+                            return true
                         }
                         R.id.miColorRed -> {
                             onChangeColor?.onColorChanged(ColorEnum.RED)
+                            changeBackground(ColorEnum.RED.toString())
+                            changeAppBarBackGround(ColorEnum.RED.toString())
+                            return true
                         }
                         R.id.miColorGrey -> {
                             onChangeColor?.onColorChanged(ColorEnum.GREY)
+                            changeBackground(ColorEnum.GREY.toString())
+                            changeAppBarBackGround(ColorEnum.GREY.toString())
+                            return true
                         }
                     }
 
@@ -154,18 +195,18 @@ class NoteBottomSheetFragment : BottomSheetDialogFragment() {
 
                         }
                         BottomSheetBehavior.STATE_EXPANDED -> {
-                           appBar?.visibility = View.VISIBLE
-                            draggingLine?.visibility  = View.GONE
+                            appBar?.visibility = View.VISIBLE
+                            draggingLine?.visibility = View.GONE
                             swipeable = false
                             Log.i("BottomSheet", "disabling swiping...")
 
                             //bottomSheetBehavior.onNestedScroll()
                             Log.i("BottomSheet", "Expanded...")
                         }
-                        BottomSheetBehavior.STATE_HALF_EXPANDED ->{
+                        BottomSheetBehavior.STATE_HALF_EXPANDED -> {
                             Log.i("BottomSheet", "half expanded...")
                         }
-                        BottomSheetBehavior.STATE_SETTLING ->{
+                        BottomSheetBehavior.STATE_SETTLING -> {
                             Log.i("BottomSheet", "settling...")
 
                         }
@@ -183,7 +224,7 @@ class NoteBottomSheetFragment : BottomSheetDialogFragment() {
                 }
 
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                    if(slideOffset == 1f){
+                    if (slideOffset == 1f) {
                         //Log.i("BottomSheet", "slided up")
                         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
                     }
@@ -193,6 +234,7 @@ class NoteBottomSheetFragment : BottomSheetDialogFragment() {
 
         }
     }
+
     /**
      * This makes the BottomSheet with rounded corners.
      *

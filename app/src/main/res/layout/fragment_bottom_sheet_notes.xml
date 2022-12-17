@@ -32,6 +32,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="#DDDDDD"
             android:visibility="invisible"
+            android:elevation="4dp"
             tools:visibility="visible">
 
             <FrameLayout

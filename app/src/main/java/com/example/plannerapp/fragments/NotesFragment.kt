@@ -1,5 +1,6 @@
 package com.example.plannerapp.fragments
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -70,7 +71,7 @@ class NotesFragment : Fragment() {
                     val bundle = Bundle()
                     bundle.putString("title", model.header)
                     bundle.putString("description", model.description)
-                    bundle.putString("color", model.getColorLight())
+                    bundle.putString("color", model.color.toString())
                     noteBottomSheetFragment.setOnChangeColor(object : NoteBottomSheetFragment.OnChangeColor{
                         override fun onColorChanged(color: ColorEnum) {
                             super.onColorChanged(color)

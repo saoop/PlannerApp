@@ -1,8 +1,9 @@
 package com.example.plannerapp
 
 class ItemTodoList(var title: String, var description: String? = null,
-                   var dateAdded: String? = null )
+                   var dateAdded: String? = null)
 {
     val subList = ArrayList<ItemTodoList>()
+    var mExpanded = false;
     var mDone = false
 }
