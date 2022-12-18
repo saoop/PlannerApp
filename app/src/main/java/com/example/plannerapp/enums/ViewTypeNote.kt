@@ -1,4 +1,4 @@
-package com.example.plannerapp
+package com.example.plannerapp.enums
 
 enum class ViewTypeNote {
     OneColumn,

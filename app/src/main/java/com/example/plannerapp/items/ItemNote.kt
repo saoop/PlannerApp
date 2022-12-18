@@ -1,7 +1,6 @@
-package com.example.plannerapp
+package com.example.plannerapp.items
 
-import android.text.Selection
-import androidx.core.content.ContextCompat
+import com.example.plannerapp.enums.ColorEnum
 
 class ItemNote(val header: String? = null, val description: String? = null,
                val dateAdded: String? = null, var color: ColorEnum = ColorEnum.GREY) {

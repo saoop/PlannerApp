@@ -1,26 +1,20 @@
 package com.example.plannerapp.fragments
 
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.*
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.plannerapp.ColorEnum
-import com.example.plannerapp.ItemNote
+import com.example.plannerapp.enums.ColorEnum
+import com.example.plannerapp.items.ItemNote
 import com.example.plannerapp.adapters.NotesAdapter
 import com.example.plannerapp.R
-import com.example.plannerapp.ViewTypeNote
+import com.example.plannerapp.enums.ViewTypeNote
 import com.example.plannerapp.databinding.FragmentNotesBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class NotesFragment : Fragment() {
 

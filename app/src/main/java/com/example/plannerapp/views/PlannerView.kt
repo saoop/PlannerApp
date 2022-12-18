@@ -10,6 +10,11 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Toast
 
+/**
+ * I don't need this class anymore. It was just for testing purposes
+ *
+ */
+
 class PlannerView(context: Context?, attributes: AttributeSet? = null) : View(context, attributes) {
 
     val rect1: Rect = Rect()

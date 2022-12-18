@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -75,7 +75,7 @@
             </LinearLayout>
 
 
-            <com.example.plannerapp.CustomViewPager
+            <com.example.plannerapp.views.CustomViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

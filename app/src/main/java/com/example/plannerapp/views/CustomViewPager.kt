@@ -1,10 +1,8 @@
-package com.example.plannerapp
+package com.example.plannerapp.views
 
 import android.content.Context
-import android.provider.ContactsContract
 import android.util.AttributeSet
 import android.view.MotionEvent
-import androidx.core.view.get
 import androidx.viewpager.widget.ViewPager
 import com.example.plannerapp.adapters.PagerAdapter
 import com.example.plannerapp.fragments.NotesFragment

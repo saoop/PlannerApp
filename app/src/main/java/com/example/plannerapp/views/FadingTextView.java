@@ -1,4 +1,4 @@
-package com.example.plannerapp;
+package com.example.plannerapp.views;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -9,14 +9,13 @@ import android.widget.*
 
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.view.menu.MenuPopupHelper
-import com.example.plannerapp.ColorEnum
+import com.example.plannerapp.enums.ColorEnum
 import com.example.plannerapp.R
 import com.example.plannerapp.databinding.FragmentBottomSheetNotesBinding
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.coroutines.flow.combine
 
 class NoteBottomSheetFragment : BottomSheetDialogFragment() {
 

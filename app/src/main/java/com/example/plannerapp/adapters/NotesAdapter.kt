@@ -1,23 +1,17 @@
 package com.example.plannerapp.adapters
 
-import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.icu.text.Transliterator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.IntegerRes
-import androidx.core.content.ContextCompat
-import androidx.core.content.contentValuesOf
-import androidx.core.content.res.ResourcesCompat.getColor
-import androidx.core.graphics.toColor
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plannerapp.*
-import com.google.android.material.internal.ContextUtils.getActivity
+import com.example.plannerapp.enums.ColorEnum
+import com.example.plannerapp.enums.ViewTypeNote
+import com.example.plannerapp.items.ItemNote
 
 class NotesAdapter(private val list: ArrayList<ItemNote>, private val viewType: ViewTypeNote): RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
 

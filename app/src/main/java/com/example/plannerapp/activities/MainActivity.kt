@@ -1,4 +1,4 @@
-package com.example.plannerapp
+package com.example.plannerapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.viewpager.widget.ViewPager
+import com.example.plannerapp.R
 import com.example.plannerapp.adapters.PagerAdapter
 import com.example.plannerapp.databinding.ActivityMainBinding
-import com.example.plannerapp.fragments.NotesFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +33,10 @@ class MainActivity : AppCompatActivity() {
         //binding.viewPager.setOnTouchListener { view, motionEvent -> true }
 
                //binding.viewPager.performClick
-        mToggle  = ActionBarDrawerToggle(this, binding.dlMain, toolBar, R.string.open, R.string.close)
+        mToggle  = ActionBarDrawerToggle(this, binding.dlMain, toolBar,
+            R.string.open,
+            R.string.close
+        )
         binding.dlMain.addDrawerListener(mToggle)
         mToggle.syncState()
 
